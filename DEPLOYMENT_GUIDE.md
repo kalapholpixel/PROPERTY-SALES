@@ -224,3 +224,16 @@ In Vercel or Netlify, check logs for errors and performance issues.
 - **Supabase**: https://supabase.com/docs
 - **Vercel**: https://vercel.com/docs
 - **Tailwind CSS**: https://tailwindcss.com/docs
+
+
+Key Security Recommendations
+For full security, configure these in your Supabase dashboard:
+
+Row Level Security (RLS) policies:
+
+Only authenticated users with "admin" role can insert/update/delete properties
+All users can read non-sold properties
+JWT Custom Claims:
+
+Set admin role in user's app_metadata for proper authorization checks
+Deploy your changes to make the security fixes live

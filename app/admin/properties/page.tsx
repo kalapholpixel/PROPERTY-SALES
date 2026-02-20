@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import AdminHeader from '@/components/admin/AdminHeader'
 import PropertiesTable from '@/components/admin/PropertiesTable'
 import AddPropertyModal from '@/components/admin/AddPropertyModal'
-import { fetchProperties } from '@/lib/api/properties'
+import { fetchPropertiesSecure } from '@/lib/api/adminActions'
 import type { Property } from '@/lib/types'
 
 export default function AdminProperties() {
@@ -15,7 +15,7 @@ export default function AdminProperties() {
   const loadProperties = async () => {
     try {
       setLoading(true)
-      const data = await fetchProperties()
+      const data = await fetchPropertiesSecure()
       setProperties(data)
     } catch (error) {
       console.error('Failed to load properties:', error)

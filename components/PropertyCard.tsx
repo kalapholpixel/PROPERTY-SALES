@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import type { Property } from '@/lib/types'
 
 interface PropertyCardProps {
@@ -34,7 +33,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
 
           <div className="flex justify-between items-center mb-4">
             <span className="text-2xl font-bold text-secondary">
-              ${property.price.toLocaleString()}
+              ${property.price ? property.price.toLocaleString() : 'N/A'}
             </span>
             <span className="text-sm text-gray-500">{property.type}</span>
           </div>

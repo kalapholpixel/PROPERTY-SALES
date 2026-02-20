@@ -37,23 +37,7 @@ export default function OAuth({ onSuccess, onError }: OAuthProps) {
 
   return (
     <div className="space-y-4">
-      <button
-        type="button"
-        onClick={() => handleOAuthLogin('google')}
-        disabled={loading}
-        className="w-full border border-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-50 transition disabled:opacity-50 flex items-center justify-center gap-2"
-      >
-        <span>🔵</span> Continue with Google
-      </button>
-
-      <button
-        type="button"
-        onClick={() => handleOAuthLogin('github')}
-        disabled={loading}
-        className="w-full border border-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-50 transition disabled:opacity-50 flex items-center justify-center gap-2"
-      >
-        <span>⚫</span> Continue with GitHub
-      </button>
+      {/* OAuth providers disabled - Google and GitHub OAuth temporarily disabled */}
     </div>
   )
 }

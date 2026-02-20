@@ -1,13 +1,15 @@
 'use client'
 
+import { phoneNumber, email } from '@/lib/env'
+
 export function OrganizationSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'RealEstateAgent',
     name: 'Real Estate',
     url: 'https://realestate.com',
-    telephone: process.env.NEXT_PUBLIC_PHONE_NUMBER || '+1 (555) 123-4567',
-    email: process.env.NEXT_PUBLIC_EMAIL || 'info@realestate.com',
+    telephone: phoneNumber,
+    email: email,
     description: 'Professional real estate agent specializing in houses and lands.',
     address: {
       '@type': 'PostalAddress',

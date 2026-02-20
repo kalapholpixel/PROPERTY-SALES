@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { whatsappNumber, phoneNumber } from '@/lib/env'
 import type { Property } from '@/lib/types'
 
 interface ContactSectionProps {
@@ -17,9 +18,6 @@ export default function ContactSection({ property }: ContactSectionProps) {
   })
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '1234567890'
-  const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER || '+1 (555) 123-4567'
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target

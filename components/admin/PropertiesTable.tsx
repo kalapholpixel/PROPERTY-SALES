@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { deleteProperty, updateProperty } from '@/lib/api/properties'
+import { deletePropertySecure, updatePropertySecure } from '@/lib/api/adminActions'
 import EditPropertyModal from './EditPropertyModal'
 import type { Property } from '@/lib/types'
 
@@ -20,7 +20,7 @@ export default function PropertiesTable({ properties, onRefresh }: PropertiesTab
 
     setDeleting(id)
     try {
-      await deleteProperty(id)
+      await deletePropertySecure(id)
       onRefresh()
     } catch (error) {
       console.error('Failed to delete property:', error)
@@ -31,7 +31,7 @@ export default function PropertiesTable({ properties, onRefresh }: PropertiesTab
 
   const handleMarkAsSold = async (property: Property) => {
     try {
-      await updateProperty(property.id, { sold: !property.sold })
+      await updatePropertySecure(property.id, { sold: !property.sold })
       onRefresh()
     } catch (error) {
       console.error('Failed to update property:', error)

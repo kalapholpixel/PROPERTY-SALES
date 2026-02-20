@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { updateProperty, uploadPropertyImage } from '@/lib/api/properties'
+import { updatePropertySecure, uploadPropertyImageSecure } from '@/lib/api/adminActions'
 import type { Property } from '@/lib/types'
 
 interface EditPropertyModalProps {
@@ -51,7 +51,7 @@ export default function EditPropertyModal({ property, onClose, onSuccess }: Edit
       let images = [...property.images]
 
       for (const image of newImages) {
-        const url = await uploadPropertyImage(image)
+        const url = await uploadPropertyImageSecure(image)
         if (url) images.push(url)
       }
 
@@ -67,7 +67,7 @@ export default function EditPropertyModal({ property, onClose, onSuccess }: Edit
         features: formData.features.split(',').map(f => f.trim()).filter(f => f),
       }
 
-      await updateProperty(property.id, updates)
+      await updatePropertySecure(property.id, updates)
       onSuccess()
     } catch (err: any) {
       setError(err.message || 'Failed to update property')

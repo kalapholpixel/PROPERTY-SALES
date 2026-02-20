@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { createProperty, uploadPropertyImage } from '@/lib/api/properties'
+import { createPropertySecure, uploadPropertyImageSecure } from '@/lib/api/adminActions'
 import type { Property } from '@/lib/types'
 
 interface AddPropertyModalProps {
@@ -52,7 +52,7 @@ export default function AddPropertyModal({ onClose, onSuccess }: AddPropertyModa
       const imageUrls: string[] = []
 
       for (const image of images) {
-        const url = await uploadPropertyImage(image)
+        const url = await uploadPropertyImageSecure(image)
         if (url) imageUrls.push(url)
       }
 
@@ -72,7 +72,7 @@ export default function AddPropertyModal({ onClose, onSuccess }: AddPropertyModa
         sold: false,
       }
 
-      await createProperty(newProperty)
+      await createPropertySecure(newProperty)
       onSuccess()
     } catch (err: any) {
       setError(err.message || 'Failed to add property')

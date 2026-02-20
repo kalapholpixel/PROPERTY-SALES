@@ -1,11 +1,10 @@
 'use client'
 
 import Link from 'next/link'
+import { whatsappNumber, phoneNumber, email } from '@/lib/env'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '1234567890'
-  const email = process.env.NEXT_PUBLIC_EMAIL || 'info@realestate.com'
 
   return (
     <footer className="bg-primary text-white mt-16">
@@ -27,7 +26,7 @@ export default function Footer() {
 
           <div>
             <h4 className="font-bold mb-4">Contact</h4>
-            <p className="text-gray-300 mb-2">Phone: {process.env.NEXT_PUBLIC_PHONE_NUMBER || '+1 (555) 123-4567'}</p>
+            <p className="text-gray-300 mb-2">Phone: {phoneNumber}</p>
             <p className="text-gray-300">Email: {email}</p>
           </div>
 

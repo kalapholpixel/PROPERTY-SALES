@@ -19,7 +19,7 @@ export default function PropertyMap({ location }: PropertyMapProps) {
             height="450"
             style={{ border: 0 }}
             loading="lazy"
-            allowFullScreen=""
+            allowFullScreen
             src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || 'AIzaSyA_yJC7E_9XVdvZc5Jp4fhVs8Cr7bvKvfU'}&q=${encodedLocation}`}
           ></iframe>
         </div>
