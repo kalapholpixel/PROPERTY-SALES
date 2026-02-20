@@ -1,0 +1,59 @@
+'use client'
+
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+
+interface OAuthProps {
+  onSuccess: () => void
+  onError: (error: string) => void
+}
+
+export default function OAuth({ onSuccess, onError }: OAuthProps) {
+  const [loading, setLoading] = useState(false)
+  const supabase = createClient()
+
+  const handleOAuthLogin = async (provider: 'google' | 'github') => {
+    setLoading(true)
+
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/admin`,
+        },
+      })
+
+      if (error) {
+        onError(error.message)
+      } else {
+        onSuccess()
+      }
+    } catch (err: any) {
+      onError(err.message || 'OAuth login failed')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className="space-y-4">
+      <button
+        type="button"
+        onClick={() => handleOAuthLogin('google')}
+        disabled={loading}
+        className="w-full border border-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-50 transition disabled:opacity-50 flex items-center justify-center gap-2"
+      >
+        <span>🔵</span> Continue with Google
+      </button>
+
+      <button
+        type="button"
+        onClick={() => handleOAuthLogin('github')}
+        disabled={loading}
+        className="w-full border border-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-50 transition disabled:opacity-50 flex items-center justify-center gap-2"
+      >
+        <span>⚫</span> Continue with GitHub
+      </button>
+    </div>
+  )
+}
